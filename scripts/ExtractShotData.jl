@@ -14,6 +14,7 @@ function trim_shot_data(events)
         tdict["location"] = event["location"]
         tdict["body_part"] = event["shot"]["body_part"]["name"]
         tdict["outcome"] = event["shot"]["outcome"]["name"]
+        tdict["type"] = event["shot"]["type"]["name"]
         push!(retval, tdict)
     end
     retval

@@ -7,7 +7,8 @@ end
 "Draw a default football pitch based on Statsbomb coordinates. This is defined by 
 1. Field rectangle drawn from [0, 0], [0, 80], [120, 80], [120, 0] (yards)
 2. Goal size of 8 yards
-3. "
+
+TODO: Rewrite things here because this thing swaps x and y (why did I do this??)"
 function get_default_pitch(; scale=3, min_y=0, min_x=0, max_y=80, max_x=120, title="", titlefont=nothing,
     border_col="white", grass_col="green3", line_col="black")
 
