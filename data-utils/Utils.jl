@@ -1,6 +1,5 @@
 import JSON
 
-statsbomb_events_data = "/data/open-data-master/data/events/"
 #
 # Common configuration
 #
@@ -24,10 +23,10 @@ function get_events_by_type(filename, event_type)
 end
 
 function test_events_by_type()
+    statsbomb_events_data = "../../open-data/data/events/"
     data_file = "$(statsbomb_events_data)/9948.json"
     retval = get_events_by_type(data_file, "shot")
     @assert length(retval) == 25
-    PrettyPrint.pprint(retval[1])
     retval = get_events_by_type(data_file, "pass")
     @assert length(retval) == 1044
     true
