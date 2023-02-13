@@ -2,6 +2,16 @@ import JSON
 import PrettyPrint
 
 statsbomb_events_data = "/data/open-data-master/data/events/"
+goal_size = 8 # yards?
+# TODO: add more information characterizing the size of the field here.
+
+#
+# Common configuration
+#
+
+#
+# Utility
+#
 
 "Parse a JSON file in Statsbomb format, and extract all events of a given type."
 function get_events_by_type(filename, event_type)
@@ -18,7 +28,7 @@ function get_events_by_type(filename, event_type)
 end
 
 function test_events_by_type()
-    data_file = "/Users/akm/Documents/Projects/open-data/data/events/9948.json"
+    data_file = "$(statsbomb_events_data)/9948.json"
     retval = get_events_by_type(data_file, "shot")
     @assert length(retval) == 25
     PrettyPrint.pprint(retval[1])

@@ -1,3 +1,5 @@
+include!("../data-utils/Utils.jl")
+
 using Plots
 
 function rectangle(w, h, x, y)
@@ -26,7 +28,6 @@ function get_default_pitch(; scale=3, min_y=0, min_x=0, max_y=80, max_x=120, tit
     plot!(p, [0, max_y], [max_x / 2, max_x / 2], linecolor=line_col)
 
     # Plot goals
-    goal_size = 8 # yards?
     plot!(p, rectangle(8, -3, (max_y - goal_size) / 2, 0), linecolor=line_col, fillcolor=border_col)
     plot!(p, rectangle(8, +3, (max_y - goal_size) / 2, max_x), linecolor=line_col, fillcolor=border_col)
 
