@@ -1,5 +1,5 @@
 # akm-xG
-A suite for Football Data Science, building up to a smarter xG model. 
+A Julia suite for Football Data Science, building up to a smarter xG model. 
 
 ## Some Context
 Football, the beautiful game, tends to pose a unique challenge to those analyzing the game at a high level. Despite the wealth of statistics generated during games such as possession, shots, passes, tackles, saves, etc., enthusiasts at all levels have found that few, if any, of these quantitative measurements tend to be good predictors of performance in a game. As such, expertise in football tends to manifest as a subjective judgement, largely guided by the "eye test" - a term to describe the intangibles that create insight based on watching thousands of games. Nonetheless, as the game evolved year-on-year, the need for data-driven decision making arose across all levels. The search for the best predictors of both individual and team performance in the sport is an ongoing endeavour that has an effect across all levels of the sport - from scouting talent to tactical insights to high-level sports journalism. 
@@ -16,6 +16,36 @@ Courtesy of [Statsbomb](https://statsbomb.com/what-we-do/hub/free-data/), there 
 
 This project will use the Julia [4] programming language to implement these models to showcase the powerful capabilities and library support offered by the language. Julia also allows us to create notebook environments for more interactive / visual tasks - something very popular in the data science community.
 
+## Short-term goals
+
+- [x] Create a visualization tool to draw a football pitch as per the data format coordinates (defined by [Statsbomb repo](https://github.com/statsbomb/open-data/tree/master/doc))
+- [x] Create basic library functions to parse and extract relevant data for xG models
+- [ ] Perform rudimentary statistical analysis of shot data, export to a convenient format for processing
+- [ ] Implement fundamental xG models based on linear/logistic regression in 1-2 parameters
+- [ ] Create visualization tools for different event types in the data (pass, carry, tackle, etc.)
+- [ ] Introduce a multi-parameter ML-based model for xG
+
+## Medium-term goals
+
+- [ ] Experiment with different parameters not directly available from the event data (e.g. game-state)
+- [ ] Experiment with encoding position data for teammates and opposition
+- [ ] Build extension statistics to xG - xA, xThreat, etc.
+- [ ] Refactor toolkit for use as a public open-source Julia library
+
+## Long-term goals
+
+- [ ] Work towards using Statsbomb Stats360 data as a primary source of input to the model, using multiple frames to gauge fuzzy stats like xThreat
+- [ ] Work towards creating an xA model that doesn't rely on a shot being taken (i.e. a good cross should have non-zero xA even if a striker fails to reach it)
+- [ ] Work towards using CV concepts to analyze video frames of games and build an ML model that applies the eye-test in real-time
+
+## If you're interested in Football Data/Statistics
+
+Collection of links that provide some unique perspectives on football performance via statistics / models
+
+1. [Club Elo](http://clubelo.com/) - ELO models applied to European club football, stretching back many decades
+2. [Opta AI for Sports](https://www.statsperform.com/artificial-intelligence/) - AI solutions for a wide range of sports data applications
+3. [Mathematical Modelling of Football](https://www.youtube.com/watch?v=yX85v-ASzQw&list=PLedeYskZY0vBOdQ6Uc9eZjZ2-nz1JT3R7&ab_channel=FriendsofTracking) - Youtube course on football data science
+
 ### Citations
 [1] https://thesefootballtimes.co/2020/04/08/the-roots-of-expected-goals-xg-and-its-journey-from-nerd-nonsense-to-the-mainstream/
 
@@ -23,4 +53,4 @@ This project will use the Julia [4] programming language to implement these mode
 
 [3] https://statsbomb.com/soccer-metrics/expected-goals-xg-explained/
 
-[4] Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. 
+[4] Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. ()
