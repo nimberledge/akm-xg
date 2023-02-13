@@ -2,15 +2,12 @@
 
 include("../data-utils/Utils.jl")
 
-import PrettyPrint
 import JSON
 import CSV
 import DataFrames
 
-output_filename_stem = "data/shot_data"
-
 function usage()
-    println("USAGE: julia <options> $(PROGRAM_FILE) <output_filename>")
+    println("USAGE: julia <options> $(PROGRAM_FILE) <path_to_data_directory> <output_filename>")
 end
 
 "Trim down the shot data to only the parameters we're interested in for now."
@@ -21,10 +18,6 @@ function trim_shot_data(events)
         body_part = event["shot"]["body_part"]["name"]
         outcome = event["shot"]["outcome"]["name"]
         type = event["shot"]["type"]["name"]
-
-        if type != "Open Play"
-            continue
-        end
 
         tdict = Dict(
             "location" => location,
@@ -41,7 +34,7 @@ end
 function write_shot_dataset(output_filename, shots)
     if endswith(output_filename, ".csv")
         return write_shot_dataset_csv(output_filename, shots)
-    elseif endswith(output_filename, ".json") 
+    elseif endswith(output_filename, ".json")
         return write_shot_dataset_json(output_filename, shots)
     else
         println("Unknown file extension: please use any of: JSON, CSV: $(output_filename)")
@@ -62,31 +55,31 @@ end
 function write_shot_dataset_csv(filename, shots)
     shots = [tdict for tdict in shots]
     shots_df = DataFrames.DataFrame(
-        location_x = [tdict["location"][1] for tdict in shots],
-        location_y = [tdict["location"][2] for tdict in shots],
-        body_part = [tdict["body_part"] for tdict in shots],
-        outcome = [tdict["outcome"] for tdict in shots],
-        type = [tdict["type"] for tdict in shots],
+        location_x=[tdict["location"][1] for tdict in shots],
+        location_y=[tdict["location"][2] for tdict in shots],
+        body_part=[tdict["body_part"] for tdict in shots],
+        outcome=[tdict["outcome"] for tdict in shots],
+        type=[tdict["type"] for tdict in shots],
     )
     CSV.write(filename, shots_df)
     return true
 end
 
 function main()
-    if length(ARGS) != 1
+    if length(ARGS) != 2
         println("ERROR: Invalid usage: $(ARGS)")
         usage()
         return nothing
     end
 
-    output_filename = ARGS[1]
+    data_directory = ARGS[1]
+    output_filename = ARGS[2]
 
-    data_directory = statsbomb_events_data
-
+    print_interval = 100
     shots = []
     file_cnt = 0
     for (idx, entry) in enumerate(readdir(abspath(data_directory), join=true))
-        if idx % 100 == 0
+        if idx % print_interval == 0
             println("Read $(idx) files...")
         end
         shot_data = get_events_by_type(entry, "Shot")
@@ -99,7 +92,7 @@ function main()
     println("Writing to $(output_filename)")
     if write_shot_dataset(output_filename, shots)
         println("INFO: Successfully wrote to: $(output_filename)")
-    else 
+    else
         println("ERROR: Failed to write output file. See above.")
     end
 end
