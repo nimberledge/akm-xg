@@ -12,13 +12,15 @@ This project is personal passion project - marrying my love for the sport of foo
 In short, the xG of a chance can be described as the "probability that the average player scores a goal" from the chance [3]. At a high level, the xG of a chance is a function that takes in all relevant attributes of the chance - distance from goal, angle to goal, type of shot, type of assist, etc., and spits out a number between 0 and 1 that describes the probability that a shot taken will result in a goal. The simplest possible xG model might look only at the location of the shot on the field, count the total number of shots and total number of goals from each position on the field, and use that ratio as the probability of scoring. As we begin to add features such as the type of shot, type of assist, and positions of teammate and opposition players, we might look towards using a machine-learning based approach in order to fit the probabilities accurately to all parameters in the model. 
 
 ## akm-xG
-Courtesy of [Statsbomb][https://statsbomb.com/what-we-do/hub/free-data/], there exists a repository of rich, open-source football data. This repository contains detailed information on events like passes, carries, defensive actions, and of course shots, in the 1000+ games available in the dataset. While it is possible that this may not quite be enough data, it is difficult to see myself overcome this problem without significant investment. 
+Courtesy of [Statsbomb](https://statsbomb.com/what-we-do/hub/free-data/), there exists a repository of rich, open-source football data. This repository contains detailed information on events like passes, carries, defensive actions, and of course shots, in the 1000+ games available in the dataset. While it is possible that this may not quite be enough data, it is difficult to see myself overcome this problem without significant investment. 
 
 This project will use the Julia [4] programming language to implement these models to showcase the powerful capabilities and library support offered by the language. Julia also allows us to create notebook environments for more interactive / visual tasks - something very popular in the data science community.
 
-
 ### Citations
 [1] https://thesefootballtimes.co/2020/04/08/the-roots-of-expected-goals-xg-and-its-journey-from-nerd-nonsense-to-the-mainstream/
+
 [2] https://www.statsperform.com/opta-analytics/
+
 [3] https://statsbomb.com/soccer-metrics/expected-goals-xg-explained/
+
 [4] Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. 
