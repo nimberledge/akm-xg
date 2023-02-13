@@ -17,13 +17,13 @@ function trim_shot_data(events)
         location = event["location"]
         body_part = event["shot"]["body_part"]["name"]
         outcome = event["shot"]["outcome"]["name"]
-        type = event["shot"]["type"]["name"]
+        shot_type = event["shot"]["type"]["name"]
 
         tdict = Dict(
             "location" => location,
             "body_part" => body_part,
             "outcome" => outcome,
-            "type" => type,
+            "shot_type" => shot_type,
         )
         push!(retval, tdict)
     end
@@ -59,7 +59,7 @@ function write_shot_dataset_csv(filename, shots)
         location_y=[tdict["location"][2] for tdict in shots],
         body_part=[tdict["body_part"] for tdict in shots],
         outcome=[tdict["outcome"] for tdict in shots],
-        type=[tdict["type"] for tdict in shots],
+        type=[tdict["shot_type"] for tdict in shots],
     )
     CSV.write(filename, shots_df)
     return true
