@@ -1,6 +1,8 @@
 import JSON
 import PrettyPrint
 
+statsbomb_events_data = "/data/open-data-master/data/events/"
+
 "Parse a JSON file in Statsbomb format, and extract all events of a given type."
 function get_events_by_type(filename, event_type)
     body = read(abspath(filename), String)

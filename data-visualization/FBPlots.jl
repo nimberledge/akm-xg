@@ -28,7 +28,7 @@ function get_default_pitch(; scale=3, min_y=0, min_x=0, max_y=80, max_x=120, tit
     # Plot goals
     goal_size = 8 # yards?
     plot!(p, rectangle(8, -3, (max_y - goal_size) / 2, 0), linecolor=line_col, fillcolor=border_col)
-    plot!(p, rectangle(8, 3, (max_y - goal_size) / 2, max_x), linecolor=line_col, fillcolor=border_col)
+    plot!(p, rectangle(8, +3, (max_y - goal_size) / 2, max_x), linecolor=line_col, fillcolor=border_col)
 
     # Plot 18-yard box
     plot!(p, rectangle(44, 18, (max_y - goal_size) / 2 - 18, 0), linecolor=line_col, fillcolor=grass_col)
