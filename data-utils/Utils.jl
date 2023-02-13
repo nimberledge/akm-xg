@@ -1,5 +1,12 @@
 import JSON
-import PrettyPrint
+
+#
+# Common configuration
+#
+
+#
+# Utility
+#
 
 "Parse a JSON file in Statsbomb format, and extract all events of a given type."
 function get_events_by_type(filename, event_type)
@@ -16,16 +23,16 @@ function get_events_by_type(filename, event_type)
 end
 
 function test_events_by_type()
-    data_file = "/Users/akm/Documents/Projects/open-data/data/events/9948.json"
+    statsbomb_events_data = "../../open-data/data/events/"
+    data_file = "$(statsbomb_events_data)/9948.json"
     retval = get_events_by_type(data_file, "shot")
     @assert length(retval) == 25
-    PrettyPrint.pprint(retval[1])
     retval = get_events_by_type(data_file, "pass")
     @assert length(retval) == 1044
     true
 end
 
-function main()
+function run_test()
     flag = true
     flag = flag && test_events_by_type()
     if flag
@@ -36,5 +43,5 @@ function main()
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    main()
+    run_test()
 end
