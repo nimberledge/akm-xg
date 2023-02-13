@@ -1,10 +1,6 @@
 import JSON
-import PrettyPrint
 
 statsbomb_events_data = "/data/open-data-master/data/events/"
-goal_size = 8 # yards?
-# TODO: add more information characterizing the size of the field here.
-
 #
 # Common configuration
 #
@@ -37,7 +33,7 @@ function test_events_by_type()
     true
 end
 
-function main()
+function run_test()
     flag = true
     flag = flag && test_events_by_type()
     if flag
@@ -48,5 +44,5 @@ function main()
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    main()
+    run_test()
 end
