@@ -59,7 +59,7 @@ function write_shot_dataset_csv(filename, shots)
         location_y=[tdict["location"][2] for tdict in shots],
         body_part=[tdict["body_part"] for tdict in shots],
         outcome=[tdict["outcome"] for tdict in shots],
-        type=[tdict["shot_type"] for tdict in shots],
+        shot_type=[tdict["shot_type"] for tdict in shots],
     )
     CSV.write(filename, shots_df)
     return true

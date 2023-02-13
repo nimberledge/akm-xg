@@ -1,4 +1,4 @@
-location_x,location_y,body_part,outcome,type
+location_x,location_y,body_part,outcome,shot_type
 111.5,52.9,Right Foot,Off T,Open Play
 113.9,26.4,Left Foot,Off T,Open Play
 93.7,34.7,Left Foot,Saved,Open Play
