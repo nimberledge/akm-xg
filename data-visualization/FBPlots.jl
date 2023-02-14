@@ -10,13 +10,13 @@ end
 By default, this function will output a plot with dimensions (240, 160)px.
 For increased resolution, use the scale parameter which maintains aspect ratio and scales up the plot."
 function get_default_pitch(; scale=1, title="", titlefont=nothing,
-    border_col="white", grass_col="green3", line_col="black")
+    border_col="white", grass_col="green3", line_col="black", legend=false)
 
     if !isnothing(titlefont)
-        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X, MAX_X, MIN_X], legend=false,
+        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X, MAX_X, MIN_X], legend=legend,
             title=title, size=(scale * 160, scale * 240), linecolor=border_col, axis=([], false), titlefont=titlefont)
     else
-        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X, MAX_X, MIN_X], legend=false,
+        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X, MAX_X, MIN_X], legend=legend,
             title=title, size=(scale * 160, scale * 240), linecolor=border_col, axis=([], false))
     end
 
@@ -71,14 +71,14 @@ This plot will have corner points [(0, 0), (60, 0), (60, 80), (0, 80)]
 which correspond to global points [(60, 0), (120, 0), (120, 80), (60, 80)]
 By default, this function will output a plot with dimensions (120, 160)px.
 For increased resolution, use the scale parameter which maintains aspect ratio and scales up the plot."
-function get_half_pitch(; scale=1, title="", titlefont=nothing,
+function get_half_pitch(; scale=1, title="", titlefont=nothing, legend=false,
     border_col="white", grass_col="green3", line_col="black")
 
     if !isnothing(titlefont)
-        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X_HALF_PITCH, MAX_X_HALF_PITCH, MIN_X], legend=false,
+        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X_HALF_PITCH, MAX_X_HALF_PITCH, MIN_X], legend=legend,
             title=title, size=(scale * 160, scale * 120), linecolor=border_col, axis=([], false), titlefont=titlefont)
     else
-        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X / 2, MAX_X / 2, MIN_X], legend=false,
+        p = plot([MIN_Y, MAX_Y, MAX_Y, MIN_Y, MIN_Y], [MIN_X, MIN_X, MAX_X / 2, MAX_X / 2, MIN_X], legend=legend,
             title=title, size=(scale * 160, scale * 120), linecolor=border_col, axis=([], false))
     end
 
