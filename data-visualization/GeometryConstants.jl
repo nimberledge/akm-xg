@@ -15,6 +15,7 @@ MIN_X = 0
 MAX_X = 120
 
 GOAL_SIZE = 8
+GOAL_HEIGHT = 3 # Just for the plotting code to use visually
 BOX_WIDTH_18YRD = 44
 BOX_HEIGHT_18YRD = 18
 
@@ -25,4 +26,4 @@ D_RADIUS = 12
 DEFAULT_CIRCLE_PTS = 100  # How many points to use while drawing the D circles
 CENTRE_CIRCLE_RADIUS = 10
 
-
+MAX_X_HALF_PITCH = 60
