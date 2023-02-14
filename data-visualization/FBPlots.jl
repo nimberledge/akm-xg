@@ -143,20 +143,20 @@ function plot_locations!(p :: Plots.Plot, locations; half_pitch=true, markercolo
 end
 
 
+"These really only test for compilation. To test the actual plotting methods,
+display(p) at the end of the function and run in interactive mode.
+
+*_hp() functions test plotting on a half-pitch."
 function test_plot_location_hp()
     p = get_half_pitch(scale=5)
     plot_location!(p, [100, 37.5])
     plot_location!(p, [91.2, 42.5])
     plot_location!(p, [110, 65.61])
     plot_location!(p, [108, 40])
-    display(p)
     true
 end
 
 function test_plot_locations_hp()
-    # This really only tests if my functions compile, needs white box testing
-    # to ensure it is working as expected. Does however serve as an example 
-    # of the syntax used to call the functions
     p = get_half_pitch(scale=5, grass_col="white")
     n_locs = 4
     locations = zeros(Float32, n_locs, 2)
@@ -165,17 +165,18 @@ function test_plot_locations_hp()
     locations[3, :] = [110, 65.61]
     locations[4, :] = [108, 40]
     plot_locations!(p, locations)
-    display(p)
     true
 end
 
 function test_plot_location()
+    # This really only tests if my functions compile, needs white box testing
+    # to ensure it is working as expected. Does however serve as an example 
+    # of the syntax used to call the functions
     p = get_default_pitch(scale=5)
     plot_location!(p, [100, 37.5], half_pitch=false)
     plot_location!(p, [91.2, 42.5], half_pitch=false)
     plot_location!(p, [110, 65.61], half_pitch=false)
     plot_location!(p, [108, 40], half_pitch=false)
-    display(p)
     true
 end
 
@@ -188,15 +189,16 @@ function test_plot_locations()
     locations[3, :] = [110, 65.61]
     locations[4, :] = [108, 40]
     plot_locations!(p, locations, half_pitch=false)
-    display(p)
     true
 end
 
 
 function main()
     flag = true
-    # flag = flag && test_plot_location()
+    flag = flag && test_plot_location()
     flag = flag && test_plot_locations()
+    flag = flag && test_plot_location_hp()
+    flag = flag && test_plot_locations_hp()
     if flag
         println("All tests passed")
     else
