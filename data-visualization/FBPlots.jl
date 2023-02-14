@@ -156,6 +156,9 @@ function plot_line!(p::Plots.Plot, locations; half_pitch=true, linecolor="white"
 
 end
 
+# ---------------------------------------------------------------------------------
+# ----------------------------- Tests ---------------------------------------------
+# ---------------------------------------------------------------------------------
 
 "These really only test for compilation. To test the actual plotting methods,
 display(p) at the end of the function and run in interactive mode.
@@ -183,9 +186,6 @@ function test_plot_locations_hp()
 end
 
 function test_plot_location()
-    # This really only tests if my functions compile, needs white box testing
-    # to ensure it is working as expected. Does however serve as an example 
-    # of the syntax used to call the functions
     p = get_default_pitch(scale=5)
     plot_location!(p, [100, 37.5], half_pitch=false)
     plot_location!(p, [91.2, 42.5], half_pitch=false)
