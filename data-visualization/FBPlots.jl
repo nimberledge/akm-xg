@@ -94,7 +94,7 @@ function get_half_pitch(; scale=1, title="", titlefont=nothing,
     # Plot 18-yard box
     plot!(p, rectangle(BOX_WIDTH_18YRD, -BOX_HEIGHT_18YRD,
             (MAX_Y - GOAL_SIZE) / 2 - BOX_HEIGHT_18YRD, MAX_X_HALF_PITCH), linecolor=line_col, fillcolor=grass_col)
-    
+
     # Plot 6-yard box
     plot!(p, rectangle(BOX_WIDTH_6YRD, -BOX_HEIGHT_6YRD,
             (MAX_Y - GOAL_SIZE) / 2 - BOX_HEIGHT_6YRD, MAX_X_HALF_PITCH), linecolor=line_col, fillcolor=grass_col)
@@ -119,7 +119,7 @@ end
 
 "Plot a single location on the pitch plot. Use half_pitch=true (on by default) to plot shots
 on the relevant half-field."
-function plot_location!(p :: Plots.Plot, location; half_pitch=true, markercolor="blue1")
+function plot_location!(p::Plots.Plot, location; half_pitch=true, markercolor="blue1")
     if half_pitch
         # Only make a copy if we have to adjust the coordinates
         tloc = copy(location)
@@ -131,7 +131,7 @@ function plot_location!(p :: Plots.Plot, location; half_pitch=true, markercolor=
 end
 
 "Plot a list of locations in dimensions [nshots, 2], where locations is a Matrix."
-function plot_locations!(p :: Plots.Plot, locations; half_pitch=true, markercolor="blue1")
+function plot_locations!(p::Plots.Plot, locations; half_pitch=true, markercolor="blue1")
     if half_pitch
         # Only make a copy if we have to adjust the coordinates
         tloc = copy(locations)
@@ -140,6 +140,20 @@ function plot_locations!(p :: Plots.Plot, locations; half_pitch=true, markercolo
         tloc = locations
     end
     scatter!(p, tloc[:, 2], tloc[:, 1], markercolor=markercolor)
+end
+
+"Plot a single line on the pitch plot. Use half_pitch=true (on by default) to plot lines
+on the relevant half-field. locations is a Matrix of dimension [2, 2]."
+function plot_line!(p::Plots.Plot, locations; half_pitch=true, linecolor="white")
+    if half_pitch
+        # Only make a copy if we have to adjust the coordinates
+        tloc = copy(locations)
+        tloc[:, 1] = tloc[:, 1] .- MAX_X_HALF_PITCH
+    else
+        tloc = locations
+    end
+    plot!(p, [tloc[:, 2]], [tloc[:, 1]], linecolor=linecolor)
+
 end
 
 
@@ -192,13 +206,35 @@ function test_plot_locations()
     true
 end
 
+function test_plot_line()
+    p = get_default_pitch(scale=5)
+    locations = zeros(Float32, 2, 2)
+    locations[1, :] = [100, 48.5]
+    locations[2, :] = [120, 37]
+    plot_line!(p, locations, half_pitch=false)
+    true
+end
 
-function main()
+function test_plot_line_hp()
+    p = get_half_pitch(scale=5)
+    locations = zeros(Float32, 2, 2)
+    locations[1, :] = [100, 48.5]
+    locations[2, :] = [120, 37]
+    plot_line!(p, locations)
+    true
+end
+
+"Run whitebox tests for FBPlots. Note that these tests only check
+for unproblematic compilation, rather than if the plots are accurate."
+function run_tests()
     flag = true
     flag = flag && test_plot_location()
     flag = flag && test_plot_locations()
     flag = flag && test_plot_location_hp()
     flag = flag && test_plot_locations_hp()
+    flag = flag && test_plot_line()
+    flag = flag && test_plot_line_hp()
+
     if flag
         println("All tests passed")
     else
@@ -207,5 +243,5 @@ function main()
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    main()
+    run_tests()
 end
